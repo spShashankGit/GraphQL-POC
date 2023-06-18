@@ -298,16 +298,27 @@
 Loading:
 {{loading}}
 <br><br><br>
-Results:
+Books Results:
 <div *ngIf="books_arr">
   <div *ngFor="let book of books_arr.books; let i = index">
     <p>
-      {{ i }}
-      {{book.author}} by {{book.title}}
+      {{ i + 1}}
+      {{book.author}} by {{book.title}} actress is {{book.star.actress}}
     </p>
   </div>
 </div>
+<br>
 
+<br>
+Movies Results:
+<div *ngIf="movies_arr">
+  <div *ngFor="let mov of movies_arr.movies; let i = index">
+    <p>
+      {{ i + 1}}
+      {{mov.movieName}} by {{mov.remark}}
+    </p>
+  </div>
+</div>
 <br>
 <p *ngIf="error">
   Errors:
