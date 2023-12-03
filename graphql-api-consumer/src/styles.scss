@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+// Define the primary color variable
+//$primary-color: #3498db;
+// Define a secondary color variable that references the primary color
+//$secondary-color: $primary-color;
+@import './node_modules/design-system-shapa/light.scss';

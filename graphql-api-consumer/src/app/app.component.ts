@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { GET_BOOKS, GET_MOVIES, GET_BOOKS_AND_MOVIES } from './graphql.operations';
+import { map } from 'rxjs';
+import { ApolloQueryResult } from '@apollo/client/core/types';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +16,7 @@ export class AppComponent {
   movies_arr: any;
   movies_loading: any;
   movies_err: any;
+  btnTextIsHere = 'Click Me';
 
   constructor(private apollo: Apollo) { }
 
@@ -20,12 +24,16 @@ export class AppComponent {
     this.apollo.watchQuery({
       query: GET_BOOKS
     })
-      .valueChanges.subscribe(results => {
+      .valueChanges
+      .pipe(map((result: ApolloQueryResult<any>) => result.data))
+      .subscribe(results => {
         this.books_arr = results?.data;
         this.loading = results?.loading;
         this.error = results?.error
         console.log('CP 1', this.books_arr);
       })
+
+    //please create the unit test case for the below code
 
     this.apollo.watchQuery({
       query: GET_MOVIES
@@ -45,4 +53,10 @@ export class AppComponent {
       })
   }
   title = 'graphql-api-consumer';
+
+  // Write a function to add two numbers
+  add(a: number, b: number) {
+    return a + b;
+  }
+
 }

@@ -295,34 +295,51 @@
 </style>
 
 <br>
-Loading:
-{{loading}}
-<br><br><br>
-Books Results:
-<div *ngIf="books_arr">
-  <div *ngFor="let book of books_arr.books; let i = index">
-    <p>
-      {{ i + 1}}
-      {{book.author}} by {{book.title}} actress is {{book.star.actress}}
-    </p>
-  </div>
-</div>
-<br>
 
-<br>
-Movies Results:
-<div *ngIf="movies_arr">
-  <div *ngFor="let mov of movies_arr.movies; let i = index">
-    <p>
-      {{ i + 1}}
-      {{mov.movieName}} by {{mov.remark}}
-    </p>
-  </div>
-</div>
-<br>
-<p *ngIf="error">
-  Errors:
-  {{error}}
-</p>
 
-<router-outlet></router-outlet>
+<div class="container bgColour">
+  <lib-button [buttonText]="btnTextIsHere"></lib-button>
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">GraphQL API Consumer</h1>
+    </div>
+
+    <div>
+      Loading:
+      {{loading}}
+      <br><br><br>
+      Books Results:
+    </div>
+    <div *ngIf="books_arr">
+      <div *ngFor="let book of books_arr.books; let i = index">
+        <!-- center the content of a paragraph -->
+        <p class="text-center">
+          {{ i + 1}}
+          {{book.author}} by {{book.title}} actress is {{book.star.actress}}
+
+        <p>
+          {{ i + 1}}
+          {{book.author}} by {{book.title}} actress is {{book.star.actress}}
+        </p>
+      </div>
+    </div>
+    <br>
+
+    <br>
+    Movies Results:
+    <div *ngIf="movies_arr">
+      <div *ngFor="let mov of movies_arr.movies; let i = index">
+        <p>
+          {{ i + 1}}
+          {{mov.movieName}} by {{mov.remark}}
+        </p>
+      </div>
+    </div>
+    <br>
+    <p *ngIf="error">
+      Errors:
+      {{error}}
+    </p>
+
+    <router-outlet></router-outlet>
+  </div>
