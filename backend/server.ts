@@ -29,6 +29,10 @@ const typeDefs = `#graphql
     books: [Book]
     movies: [Movie]
   }
+
+  type Mutation{
+    createMovie(movieName:String,remark:String):String
+  }
 `;
 
 const resolvers = {
@@ -36,6 +40,13 @@ const resolvers = {
         books: () => books,
         movies: () => movies
     },
+    Mutation: {
+        createMovie: (root, args, context, info) => {
+            movies.push({ movieName: args.movieName, remark: args.remark })
+            console.log('CP 4', movies);
+            return true;
+        }
+    }
 };
 
 // The ApolloServer constructor requires two parameters: your schema
@@ -76,7 +87,7 @@ const books = [
 ];
 
 
-const movies = [
+var movies = [
     {
         movieName: 'Sniper reloaded',
         remark: 'Jimmy',
